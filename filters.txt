@@ -1,0 +1,12 @@
+[Adblock Plus 2.0]
+! Title: 我的自定义拦截规则
+! 2026年4月15日14:36:46 增加x6d.com去广告
+
+! --- x6d.com 广告拦截开始 ---
+x6d.com##.index-t-ad
+x6d.com##.list-ad
+x6d.com##.post-ad
+x6d.com##.sidebar-ad
+x6d.com##.ad-link
+x6d.com##div[class*="ad-"]
+! --- x6d.com 广告拦截结束 ---
