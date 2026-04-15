@@ -2,11 +2,32 @@
 ! Title: 我的自定义拦截规则
 ! 2026年4月15日14:36:46 增加x6d.com去广告
 
-! --- x6d.com 广告拦截开始 ---
+! --- x6d.com 深度拦截开始 ---
+
+! 1. 拦截广告脚本请求（从源头掐断）
+||x6d.com/common/js/ad.js
+||x6d.com/style/js/ad.js
+
+! 2. 暴力隐藏所有包含“广告”文本的 div 容器
+x6d.com##div:has-text(/^广告$/)
+x6d.com##div:has-text(/广告招租/)
+
+! 3. 针对首页顶部那一排文字广告（该站常用类名混淆，改用路径选择）
 x6d.com##.index-t-ad
-x6d.com##.list-ad
-x6d.com##.post-ad
+x6d.com##div[style*="height:auto"]:has(a[href*="http"])
+
+! 4. 针对列表项中间夹杂的“伪装成文章”的广告
+x6d.com##li:has(.ad-tag)
+x6d.com##li:has(span:contains(广告))
+
+! 5. 隐藏侧边栏动态加载的推广块
 x6d.com##.sidebar-ad
-x6d.com##.ad-link
-x6d.com##div[class*="ad-"]
-! --- x6d.com 广告拦截结束 ---
+x6d.com##aside div[class^="ad"]
+x6d.com##.widget_ui_ads
+
+! 6. 拦截常见的第三方联盟广告域名（如果它挂了外链的话）
+||pinduoduo.com^$domain=x6d.com
+||jd.com^$domain=x6d.com
+||taobao.com^$domain=x6d.com
+
+! --- x6d.com 深度拦截结束 ---
